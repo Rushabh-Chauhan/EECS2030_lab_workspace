@@ -33,47 +33,37 @@ package eecs2030.lab1;
  *
  */
 public class HounsfieldWindow {
-	
+
 	public int level;
 	public int width;
 	public int colevel = 0;
 	public int cowidth = 125;
-	public HounsfieldWindow()
-	{
+
+	public HounsfieldWindow() {
 		level = 0;
 		width = 400;
 	}
-	
-	public HounsfieldWindow(int level, int width)
-	{
-		
-		if(level < Hounsfield.MIN_VALUE || level > Hounsfield.MAX_VALUE)
-		{
+
+	public HounsfieldWindow(int level, int width) {
+
+		if (level < Hounsfield.MIN_VALUE || level > Hounsfield.MAX_VALUE) {
 			throw new IllegalArgumentException();
-		}
-		else if(width < 1)
-		{
+		} else if (width < 1) {
 			throw new IllegalArgumentException();
-		}
-		else
-		{
+		} else {
 			this.level = level;
 			this.width = width;
 		}
 	}
-	
-	private static void checklevel(int level)
-	{
-		if(level < Hounsfield.MIN_VALUE || level > Hounsfield.MAX_VALUE)
-		{
+
+	private static void checklevel(int level) {
+		if (level < Hounsfield.MIN_VALUE || level > Hounsfield.MAX_VALUE) {
 			throw new IllegalArgumentException();
 		}
 	}
-	
-	private static void checkwidth(int width)
-	{
-		if(width < 1)
-		{
+
+	private static void checkwidth(int width) {
+		if (width < 1) {
 			throw new IllegalArgumentException();
 		}
 	}
@@ -83,10 +73,10 @@ public class HounsfieldWindow {
 	}
 
 	public int setLevel(int level) {
-		
+
 		HounsfieldWindow.checklevel(level);
 		this.level = level;
-		
+
 		int k = colevel;
 		colevel = level;
 		return k;
@@ -99,13 +89,25 @@ public class HounsfieldWindow {
 	public int setWidth(int width) {
 		HounsfieldWindow.checkwidth(width);
 		this.width = width;
-		
+
 		int k = cowidth;
 		cowidth = width;
 		return k;
 	}
-	
-	
-	
-	
+
+	public double map(Hounsfield h) {
+		int value = h.get();
+		double lo = this.level - (this.width * 0.5);
+		double hi = this.level + (this.width * 0.5);
+		double mid = (value - lo) / this.width;
+
+		if (value < lo) {
+			return 0;
+		} else if (value > hi) {
+			return 1;
+		} else {
+			return mid;
+		}
+	}
+
 }
