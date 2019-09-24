@@ -12,7 +12,7 @@ import org.junit.runners.MethodSorters;
 public class NickelTest {
 
 	@Rule
-	public Timeout globalTimeout = Timeout.seconds(500);
+	public Timeout globalTimeout = Timeout.seconds(5);
 
 	@Test
 	public void test01_ctor() {

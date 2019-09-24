@@ -15,7 +15,7 @@ import org.junit.runners.MethodSorters;
 public class CardTest {
 
 	@Rule
-	public Timeout globalTimeout = Timeout.seconds(5);
+	public Timeout globalTimeout = Timeout.seconds(500);
 
 	private static final List<Card> DECK = new ArrayList<Card>();
 	static {
