@@ -7,21 +7,18 @@ import java.util.Objects;
  * be found at the end of this file.
  */
 
-
-
 public class Card implements Comparable<Card> {
 
 	/**
-	 * The rank of this card. 
+	 * The rank of this card.
 	 */
 	private Rank rank;
-	
+
 	/**
-	 * The suit of this card. 
+	 * The suit of this card.
 	 */
 	private Suit suit;
-	
-	
+
 	public Card(Rank rank, Suit suit) {
 		if (rank == null || suit == null) {
 			throw new NullPointerException();
@@ -29,91 +26,72 @@ public class Card implements Comparable<Card> {
 		this.rank = rank;
 		this.suit = suit;
 	}
-	
-	
+
 	public Rank rank() {
 		return this.rank;
 	}
-	
-	
+
 	public Suit suit() {
 		return this.suit;
 	}
-	
-	
+
 	public Colour color() {
 		return this.suit.color();
 	}
-
 
 	@Override
 	public int hashCode() {
 		return Objects.hash(this.rank, this.suit);
 	}
-	
-	
+
 	@Override
 	public String toString() {
 		return this.rank + " of " + this.suit;
 	}
-	
+
 	/*
 	 * You need to implement the compareTo and equals methods below.
 	 * 
-	 * For compareTo, you may compare ranks using the compareTo method 
-	 * found in the Rank class. You may compare suits using the compareTo method 
-	 * found in the Suit class.
+	 * For compareTo, you may compare ranks using the compareTo method found in the
+	 * Rank class. You may compare suits using the compareTo method found in the
+	 * Suit class.
 	 */
 
-	
 	@Override
 	public int compareTo(Card other) {
-		
-		if(this.rank.compareTo(other.rank()) < 0)
-		{
+
+		if (this.rank.compareTo(other.rank()) < 0) {
 			return -1;
 		}
-		
-		else if(this.rank.compareTo(other.rank()) > 0)
-		{
+
+		else if (this.rank.compareTo(other.rank()) > 0) {
 			return 1;
-		}
-		else if (this.suit.compareTo(other.suit()) < 0)
-		{
+		} else if (this.suit.compareTo(other.suit()) < 0) {
 			return -1;
-		}
-		else if (this.suit.compareTo(other.suit()) > 0)
-		{
+		} else if (this.suit.compareTo(other.suit()) > 0) {
 			return 1;
-		}
-		else 
-		{
+		} else {
 			return 0;
 		}
-		
-		 
+
 	}
-	
-	
-	@Override	public boolean equals(Object obj) {
-	
-		
-		if (this == obj)
-		{
-			return  true;
-		}
-		
-		if (obj == null || this.getClass() != obj.getClass())
-		{
-			return false;
-		}
-		
-		Card other = (Card)obj;
-		if (this.rank.compareTo(other.rank)==0 && this.suit.compareTo(other.suit) == 0)
-		{
+
+	@Override
+	public boolean equals(Object obj) {
+
+		if (this == obj) {
 			return true;
 		}
-		else return false;
+
+		if (obj == null || this.getClass() != obj.getClass()) {
+			return false;
+		}
+
+		Card other = (Card) obj;
+		if (this.rank.compareTo(other.rank) == 0 && this.suit.compareTo(other.suit) == 0) {
+			return true;
+		} else
+			return false;
 	}
-	
+
 }
